@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <title>miil client</title>
+
+    <script src="bower_components/platform/platform.js"></script>
+
+    <link rel="import" href="bower_components/core-icons/core-icons.html">
+    <link rel="import" href="bower_components/core-icons/social-icons.html">
+    <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
+    <link rel="import" href="bower_components/font-roboto/roboto.html">
+    <link rel="import" href="bower_components/paper-button/paper-button.html">
+    <link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
+    <link rel="import" href="bower_components/paper-fab/paper-fab.html">
+    <!-- For miiltag -->
+    <link rel="import" href="miil-user-photos.html">
+    <!-- For dialog -->
+    <link rel="import" href="bower_components/paper-button/paper-button.html">
+    <link rel="import" href="bower_components/paper-dialog/paper-dialog-transition.html">
+    <link rel="import" href="bower_components/paper-dialog/paper-dialog.html">
+
+    <link rel="stylesheet" href="styles.css">
+  </head>
+
+  <body unresolved style="margin: 0px">
+      <!-- dialog -->
+      <paper-dialog heading="User name" transition="paper-dialog-transition-center" id="dialog_settings">
+          <br>
+          <a href="http://miil.me/" target='_blank'>ミイル</a>のユーザ名：<input type="text" value="" placeholder="daiz" id="username">
+          <paper-button label="Done" affirmative="" autofocus="" id="dialog_btn_done">Done</paper-button>
+      </paper-dialog>
+
+      <core-toolbar>
+        <img src="icon/icon2.png" style="width: 60px;border-radius: 2px;">
+        <span flex style='font-size:26px;'>miil client</span>
+        <paper-icon-button icon="clear" id='demo_clear'></paper-icon-button>
+        <paper-icon-button icon="account-box" id='demo_username'></paper-icon-button>
+        <paper-fab icon="arrow-forward" id='demo_next'></paper-fab>
+      </core-toolbar>
+      <miil-user-photos user="daiz"></miil-user-photos>
+
+      <!-- Start demo -->
+      <div id="main" style='margin-top: 65px'>
+         <div id="demo_photos" style="margin:1px; height:600px; overflow-x:hidden; overflow-y:scroll">
+         </div>
+      </div>
+      <!-- End demo -->
+
+      <script src="demo.js"></script>
+  </body>
+</html>
