@@ -17,10 +17,9 @@ bower install
 3. Click *Load unpacked extension…* to pop up a file-selection dialog.
 4. Navigate to the directory in which your extension files live, and select it.
 
-(Quoted from [https://developer.chrome.com/extensions/getstarted])
+(Quoted from https://developer.chrome.com/extensions/getstarted)
 
 When the installation is complete, the application `*MiilClient` will appear in the Chrome app launcher.
 
 # Step 4: Collect more information of `miilClient`
-You can get more information about this project in my blog:
-[http://daiiz.hatenablog.com/archive/category/miilClient]
+You can get more information about this project in my blog: http://daiiz.hatenablog.com/archive/category/miilClient
