@@ -1,1 +1,2 @@
-Polymer("core-menu");
+
+  Polymer('core-menu',{});

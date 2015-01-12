@@ -1,50 +1,235 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2014-2015 daiz.
+This code may only be used under the BSD style license.
+-->
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
 <html>
   <head>
-    <title>miil client</title>
+  <title>miilClient</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="src/yummy.png" type="image/png">
+  <link rel="apple-touch-icon-precomposed" href="src/yummy.png">
 
-    <script src="bower_components/platform/platform.js"></script>
+  <script src="lib/oauth.js"></script>
+  <script src="lib/sha1.js"></script>
+  <script src="oauth-keys/key.twitter.js"></script>
 
-    <link rel="import" href="bower_components/core-icons/core-icons.html">
-    <link rel="import" href="bower_components/core-icons/social-icons.html">
-    <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
-    <link rel="import" href="bower_components/font-roboto/roboto.html">
-    <link rel="import" href="bower_components/paper-button/paper-button.html">
-    <link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
-    <link rel="import" href="bower_components/paper-fab/paper-fab.html">
-    <!-- For miiltag -->
-    <link rel="import" href="miil-user-photos.html">
-    <!-- For dialog -->
-    <link rel="import" href="bower_components/paper-button/paper-button.html">
-    <link rel="import" href="bower_components/paper-dialog/paper-dialog-transition.html">
-    <link rel="import" href="bower_components/paper-dialog/paper-dialog.html">
+  <script src="bower_components/platform/platform.js"></script>
+  <link rel="import" href="bower_components/core-icon-button/core-icon-button.html">
+  <link rel="import" href="bower_components/core-icons/social-icons.html">
 
-    <link rel="stylesheet" href="styles.css">
-  </head>
+  <!-- For griddles -->
+  <link rel="import" href="bower_components/griddles-ui-card/griddles-ui-card.html">
 
-  <body unresolved style="margin: 0px">
-      <!-- dialog -->
-      <paper-dialog heading="User name" transition="paper-dialog-transition-center" id="dialog_settings">
-          <br>
-          <a href="http://miil.me/" target='_blank'>ミイル</a>のユーザ名：<input type="text" value="" placeholder="daiz" id="username">
-          <paper-button label="Done" affirmative="" autofocus="" id="dialog_btn_done">Done</paper-button>
-      </paper-dialog>
+  <!-- For header -->
+  <link rel="import" href="bower_components/daiz-core-scroll-header-panel/core-scroll-header-panel.html">
+  <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
 
-      <core-toolbar>
-        <img src="icon/icon2.png" style="width: 60px;border-radius: 2px;">
-        <span flex style='font-size:26px;'>miil client</span>
-        <paper-icon-button icon="clear" id='demo_clear'></paper-icon-button>
-        <paper-icon-button icon="account-box" id='demo_username'></paper-icon-button>
-        <paper-fab icon="arrow-forward" id='demo_next'></paper-fab>
-      </core-toolbar>
-      <miil-user-photos user="daiz"></miil-user-photos>
+  <!-- For menu -->
+  <link href="bower_components/paper-item/paper-item.html" rel="import">
+  <link href="bower_components/paper-menu-button/paper-menu-button.html" rel="import">
+  <link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
 
-      <!-- Start demo -->
-      <div id="main" style='margin-top: 65px'>
-         <div id="demo_photos" style="margin:1px; height:600px; overflow-x:hidden; overflow-y:scroll">
-         </div>
-      </div>
-      <!-- End demo -->
+  <!-- For dialog -->
+  <link rel="import" href="bower_components/paper-button/paper-button.html">
+  <link rel="import" href="bower_components/paper-dialog/paper-dialog-transition.html">
+  <link rel="import" href="bower_components/paper-dialog/paper-dialog.html">
 
-      <script src="demo.js"></script>
-  </body>
+  <!-- For input -->
+  <link rel="import" href="bower_components/paper-input/paper-input.html">
+
+  <!-- For App -->
+  <script src="lib/appStorage_v0.0.1.js"></script>
+  <script src="src/samples.js"></script>
+
+  <style shim-shadowdom="">
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      color: #333;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      overflow-x: hidden; /* bugfix #1 */
+    }
+
+    core-scroll-header-panel {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+
+    /* background for toolbar when it is at its full size */
+    core-scroll-header-panel::shadow #headerBg {
+      background-image: url("src/1frgq.jpg");
+    }
+
+    /* background for toolbar when it is condensed */
+    core-scroll-header-panel::shadow #condensedHeaderBg {
+      background-color: #312319;
+    }
+
+    core-toolbar {
+      color: #EADFC6;
+      fill: #EADFC6; /* #f1f1f1 */
+      background-color: transparent;
+    }
+
+    core-scroll-header-panel::shadow #mainContainer {
+      overflow-y: scroll!important;
+    }
+
+    .title {
+      -webkit-transform-origin: 0;
+      transform-origin: 0;
+      font-size: 40px;
+    }
+
+    .content {
+      padding: 10px 30px;
+    }
+
+    .content {
+      padding: 0px 0px;
+      display: flex; /* bugfix #1 */
+    }
+
+    .inner {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      z-index: -1;
+    }
+
+    .menu_item, .mi {
+      color: #333;
+      font-size: 12pt;
+      font-family: arial, Meiryo;
+    }
+
+    paper-dialog paper-button {
+      font-weight: bold;
+    }
+
+    paper-button[autofocus] {
+      color: #4285f4;
+    }
+
+    paper-dialog {
+      width: 50%;
+      min-width: 430px;
+    }
+
+    html /deep/ core-menu {
+      background-color: #FAFAFA;
+      border-radius: 3px;
+    }
+
+    html /deep/ .stream {
+      padding-top: 4px;
+    }
+  </style>
+
+</head>
+<body unresolved="" style="background-color: #e5e5e5">
+
+  <core-scroll-header-panel condenses="" id="panel">
+
+    <core-toolbar class="tall">
+      <img src="src/yummy.png" style="width: 40px; height: 40px">
+      <div flex=""></div>
+      <div class="inner paper-shadow-bottom-z-1"></div>
+
+      <paper-menu-button icon="account-box" halign="right">
+        <paper-item label="ミイルに投稿した写真" class="mi" id="btn_user"></paper-item>
+        <hr>
+        <paper-item label="ミイルのユーザー名を指定" class="mi" id="miiluser_set"></paper-item>
+      </paper-menu-button>
+
+      <paper-icon-button icon="social:post-twitter" halign="right" id="btn_search">
+      </paper-icon-button>
+
+      <paper-menu-button icon="star" halign="right" id="menus">
+         <paper-item label="すべてのごちそう" class="menu_item" id="btn_all_gochiso" data-label="ごちそう"></paper-item>
+    　</paper-menu-button>
+      <div class="inner paper-shadow-bottom-z-1"></div>
+
+      <paper-menu-button icon="more-vert" halign="right">
+        <paper-item label="miilClient について" class="mi" id="about"></paper-item>
+      </paper-menu-button>
+      <div class="bottom indent title">miilClient</div>
+
+    </core-toolbar>
+
+    <div class="content">
+       <griddles-ui-card wrappedby="core-scroll-header-panel"
+           cardWidth=194
+           cardMarginBottom=4
+           streamMarginLeft=2
+           streamMarginRight=2
+           streamPaddingTop=10
+           numberReadAtOnce=30
+           displayFromTopLeftToBottomRight=0.01>
+       </griddles-ui-card>
+    </div>
+  </core-scroll-header-panel>
+
+<!-- Dialogs -->
+<paper-dialog heading="データをインポート" transition="paper-dialog-transition-center" id="dialog_import">
+    <br>
+    <input placeholder="ここに「ごちそうコード」を貼り付けてください。" id="dialog_input_import" style="width:350px;border: 1px solid #CCC;">
+    <paper-button label="キャンセル" affirmative=""></paper-button>
+    <paper-button label="インポート" affirmative="" autofocus="" id="dialog_btn_import"></paper-button>
+</paper-dialog>
+
+<paper-dialog heading="#miil を検索" transition="paper-dialog-transition-center" id="dialog_search_twitter">
+    <br>
+    <input placeholder="ここに検索キーワードを入力してください。" id="dialog_input_search" style="width:350px;border: 1px solid #CCC;">
+    <paper-button label="キャンセル" affirmative=""></paper-button>
+    <paper-button label="検索" affirmative="" autofocus="" id="dialog_btn_search"></paper-button>
+</paper-dialog>
+
+<paper-dialog heading="User name" transition="paper-dialog-transition-center" id="dialog_user">
+    <br>
+    <a href="http://miil.me/" target='_blank'>ミイル</a>のユーザ名：<input type="text" value="" placeholder="daiz" id="username" style='width: 200px;border: 1px solid #CCC;'>
+    <paper-button label="OK" affirmative="" autofocus="" id="dialog_btn_user"></paper-button>
+</paper-dialog>
+
+<paper-dialog heading="取得中" transition="paper-dialog-transition-center" id="dialog_wait">
+    <br>
+    Twitterからの写真の取得には、しばらく時間がかかります。表示の準備完了次第、お知らします。
+</paper-dialog>
+
+<paper-dialog heading="準備ができました" transition="paper-dialog-transition-center" id="dialog_display_tw">
+    <br>
+    お待たせしました！「<b id='dialog_display_tw_q'></b>」を表示する準備が整いました。
+    <paper-button label="写真を表示" affirmative="" autofocus="" id="dialog_btn_display_tw"></paper-button>
+</paper-dialog>
+
+<paper-dialog heading="概要" transition="paper-dialog-transition-center" id="dialog_about">
+    <div id='appinfo'></div>
+    <paper-button label="Done" affirmative="" autofocus=""></paper-button>
+</paper-dialog>
+
+<!-- Application -->
+<script src="app_js/pub.githubapp.js"></script>
+</body>
 </html>

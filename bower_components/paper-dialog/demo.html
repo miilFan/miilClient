@@ -1,16 +1,7 @@
-<!--
-    @license
-    Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
-    This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-    The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-    The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-    Code distributed by Google as part of the polymer project is also
-    subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
---><!DOCTYPE html><html><head>
-  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
-
+<!DOCTYPE html><html><head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <title>paper-dialog</title>
-  <script src="../webcomponentsjs/webcomponents.js"></script>
+  <script src="../platform/platform.js"></script>
   <link href="../font-roboto/roboto.html" rel="import">
   <link href="../paper-button/paper-button.html" rel="import">
   <link rel="import" href="paper-dialog-transition.html">
@@ -63,14 +54,14 @@
 
     <p>Lorem ipsum dolor sit amet, doming noster at quo, nostrud lucilius rationibus ea duo. Vim no mucius dolores. No bonorum voluptatum vis, has iudicabit consectetuer ne. Nullam sensibus vim id, et quo graeci perpetua.</p>
 
-    <paper-button dismissive="">More Info...</paper-button>
-    <paper-button affirmative="">Decline</paper-button>
-    <paper-button affirmative="" autofocus="">Accept</paper-button>
+    <paper-button label="More Info..." dismissive=""></paper-button>
+    <paper-button label="Decline" affirmative=""></paper-button>
+    <paper-button label="Accept" affirmative="" autofocus=""></paper-button>
 
   </paper-dialog>
 
-  <paper-button onclick="toggleDialog('paper-dialog-transition-bottom')">Transition A</paper-button>
-  <paper-button onclick="toggleDialog('paper-dialog-transition-center')">Transition B</paper-button>
+  <paper-button label="Transition A" onclick="toggleDialog('paper-dialog-transition-bottom')"></paper-button>
+  <paper-button label="Transition B" onclick="toggleDialog('paper-dialog-transition-center')"></paper-button>
   <script src="demo.html.0.js"></script>
 
 

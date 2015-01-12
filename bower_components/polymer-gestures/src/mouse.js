@@ -7,7 +7,7 @@
  * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
 
-(function (scope) {
+(function(scope) {
   var dispatcher = scope.dispatcher;
   var pointermap = dispatcher.pointermap;
   // radius around touchend that swallows mouse events
@@ -15,11 +15,23 @@
 
   var WHICH_TO_BUTTONS = [0, 1, 4, 2];
 
-  var CURRENT_BUTTONS = 0;
-  var HAS_BUTTONS = false;
-  try {
-    HAS_BUTTONS = new MouseEvent('test', {buttons: 1}).buttons === 1;
-  } catch (e) {}
+  var currentButtons = 0;
+
+  var FIREFOX_LINUX = /Linux.*Firefox\//i;
+
+  var HAS_BUTTONS = (function() {
+    // firefox on linux returns spec-incorrect values for mouseup.buttons
+    // https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent.buttons#See_also
+    // https://codereview.chromium.org/727593003/#msg16
+    if (FIREFOX_LINUX.test(navigator.userAgent)) {
+      return false;
+    }
+    try {
+      return new MouseEvent('test', {buttons: 1}).buttons === 1;
+    } catch (e) {
+      return false;
+    }
+  })();
 
   // handler block for native mouse events
   var mouseEvents = {
@@ -67,11 +79,11 @@
         var type = inEvent.type;
         var bit = WHICH_TO_BUTTONS[inEvent.which] || 0;
         if (type === 'mousedown') {
-          CURRENT_BUTTONS |= bit;
+          currentButtons |= bit;
         } else if (type === 'mouseup') {
-          CURRENT_BUTTONS &= ~bit;
+          currentButtons &= ~bit;
         }
-        e.buttons = CURRENT_BUTTONS;
+        e.buttons = currentButtons;
       }
       return e;
     },
@@ -93,7 +105,7 @@
           // handle case where we missed a mouseup
           if ((HAS_BUTTONS ? e.buttons : e.which) === 0) {
             if (!HAS_BUTTONS) {
-              CURRENT_BUTTONS = e.buttons = 0;
+              currentButtons = e.buttons = 0;
             }
             dispatcher.cancel(e);
             this.cleanupMouse(e.buttons);

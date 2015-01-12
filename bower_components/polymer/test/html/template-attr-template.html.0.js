@@ -1,2 +1,0 @@
-
-  var testsRun = 0;

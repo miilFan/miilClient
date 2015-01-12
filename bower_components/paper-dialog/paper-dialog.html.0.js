@@ -61,7 +61,7 @@
       heading: '',
 
       /**
-       * Set this property to the id of a `core-transition` element to specify
+       * Set this property to the id of a <core-transition> element to specify
        * the transition to use when opening/closing this dialog.
        *
        * @attribute transition

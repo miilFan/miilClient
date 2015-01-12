@@ -1,5 +1,0 @@
-
-      addEventListener('HTMLImportsLoaded', function() {
-        done();
-      })
-    

@@ -35,9 +35,9 @@ To use a transition, import `paper-dialog-transition.html` alongside paper-dialo
 
 Then set the `transition` attribute:
 
-    <paper-dialog heading="Title for dialog" transition="paper-dialog-transition-center">
+    <paper-dialog heading="Title for dialog" transition="paper-transition-center">
 
-    <paper-dialog heading="Title for dialog" transition="paper-dialog-transition-bottom">
+    <paper-dialog heading="Title for dialog" transition="paper-transition-bottom">
 
 @group Paper Elements
 @element paper-dialog
@@ -58,9 +58,11 @@ Fired when the dialog's `opened` property changes.
 
     <link href="paper-dialog.css" rel="stylesheet">
 
-    <paper-shadow z="3" fit=""></paper-shadow>
+    <div id="shadow">
+      <paper-shadow z="3" hasposition=""></paper-shadow>
+    </div>
 
-    <core-overlay id="overlay" opened="{{opened}}" autoclosedisabled?="{{autoCloseDisabled}}" backdrop?="{{backdrop}}" layered?="{{layered}}" target="{{}}" sizingtarget="{{$.container}}" closeselector="{{closeSelector}}" transition="{{transition}}"></core-overlay>
+    <core-overlay id="overlay" opened="{{opened}}" autoclosedisabled?="{{autoCloseDisabled}}" backdrop?="{{backdrop}}" layered?="{{layered}}" target="{{}}" sizingtarget="{{$.container}}" closeselector="{{closeSelector}}" transition="{{transition}}" margin="20"></core-overlay>
 
     <div id="container" layout="" vertical="">
 

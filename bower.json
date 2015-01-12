@@ -1,0 +1,18 @@
+{
+  "name": "miilClient",
+  "private": true,
+  "dependencies": {
+    "polymer": "Polymer/polymer#^0.3.5",
+    "platform": "Polymer/platform#^0.3.5",
+    "core-icon-button": "Polymer/core-icon-button#^0.3.5",
+    "core-toolbar": "Polymer/core-toolbar#^0.3.5",
+    "paper-item": "Polymer/paper-item#^0.3.5",
+    "paper-menu-button": "Polymer/paper-menu-button#^0.3.5",
+    "paper-button": "Polymer/paper-button#^0.3.5",
+    "paper-dialog": "Polymer/paper-dialog#^0.3.5",
+    "paper-input": "Polymer/paper-input#^0.3.5",
+    "web-animations-js": "web-animations/web-animations-js-legacy#master",
+    "daiz-core-scroll-header-panel": "daiz713/daiz-core-scroll-header-panel#master",
+    "griddles-ui-card": "griddles-ui-card/griddles-ui-card#^0.3.3"
+  }
+}

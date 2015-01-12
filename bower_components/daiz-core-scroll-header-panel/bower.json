@@ -1,5 +1,5 @@
 {
-  "name": "core-scroll-header-panel",
+  "name": "daiz-core-scroll-header-panel",
   "private": true,
   "dependencies": {
     "core-field": "Polymer/core-field#master",

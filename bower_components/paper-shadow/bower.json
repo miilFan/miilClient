@@ -2,9 +2,6 @@
   "name": "paper-shadow",
   "private": true,
   "dependencies": {
-    "polymer": "Polymer/polymer#master"
-  },
-  "devDependencies": {
-    "web-component-tester": "Polymer/web-component-tester#^1.1.4"
+    "polymer": "Polymer/polymer#^0.3.0"
   }
 }

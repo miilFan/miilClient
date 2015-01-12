@@ -1,23 +1,15 @@
 
 
   Polymer('core-collapse', {
-
-    /**
-     * Fired when the `core-collapse`'s `opened` property changes.
-     * 
-     * @event core-collapse-open
-     */
-
     /**
      * Fired when the target element has been resized as a result of the opened
      * state changing.
      * 
      * @event core-resize
-     */
+    */
 
     /**
-     * The target element that will be opened when the `core-collapse` is 
-     * opened. If unspecified, the `core-collapse` itself is the target.
+     * The target element.
      *
      * @attribute target
      * @type object
@@ -63,18 +55,6 @@
      * @default false
      */
     fixedSize: false,
-    
-    /**
-     * By default the collapsible element is set to overflow hidden. This helps
-     * avoid element bleeding outside the region and provides consistent overflow
-     * style across opened and closed states. Set this property to true to allow 
-     * the collapsible element to overflow when it's opened.
-     *
-     * @attribute allowOverflow
-     * @type boolean
-     * @default false
-     */
-    allowOverflow: false,
 
     created: function() {
       this.transitionEndListener = this.transitionEnd.bind(this);
@@ -105,7 +85,7 @@
       }
       this.isTargetReady = !!this.target;
       this.classList.toggle('core-collapse-closed', this.target !== this);
-      this.toggleOpenedStyle(false);
+      this.target.style.overflow = 'hidden';
       this.horizontalChanged();
       this.addListeners(this.target);
       // set core-collapse-closed class initially to hide the target
@@ -127,7 +107,6 @@
 
     openedChanged: function() {
       this.update();
-      this.fire('core-collapse-open', this.opened);
     },
 
     /**
@@ -152,7 +131,6 @@
         this.updateSize('auto', null);
       }
       this.setTransitionDuration(null);
-      this.toggleOpenedStyle(this.opened);
       this.toggleClosedClass(!this.opened);
       this.asyncFire('core-resize', null, this.target);
     },
@@ -160,10 +138,6 @@
     toggleClosedClass: function(closed) {
       this.hasClosedClass = closed;
       this.target.classList.toggle('core-collapse-closed', closed);
-    },
-    
-    toggleOpenedStyle: function(opened) {
-      this.target.style.overflow = this.allowOverflow && opened ? '' : 'hidden';
     },
 
     updateSize: function(size, duration, forceEnd) {
@@ -208,10 +182,6 @@
       if (!this.fixedSize) {
         this.updateSize('auto', null);
         var s = this.calcSize();
-        if (s == '0px') {
-          this.transitionEnd();
-          return;
-        }
         this.updateSize(0, null);
       }
       this.async(function() {
@@ -220,7 +190,6 @@
     },
 
     hide: function() {
-      this.toggleOpenedStyle(false);
       // don't need to do anything if it's already hidden
       if (this.hasClosedClass && !this.fixedSize) {
         return;

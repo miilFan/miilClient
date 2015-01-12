@@ -1,1 +1,83 @@
-Polymer("core-iconset",{src:"",width:0,icons:"",iconSize:24,offsetX:0,offsetY:0,type:"iconset",created:function(){this.iconMap={};this.iconNames=[];this.themes={}},ready:function(){if(this.src&&this.ownerDocument!==document){this.src=this.resolvePath(this.src,this.ownerDocument.baseURI)}this.super();this.updateThemes()},iconsChanged:function(){var ox=this.offsetX;var oy=this.offsetY;this.icons&&this.icons.split(/\s+/g).forEach(function(name,i){this.iconNames.push(name);this.iconMap[name]={offsetX:ox,offsetY:oy};if(ox+this.iconSize<this.width){ox+=this.iconSize}else{ox=this.offsetX;oy+=this.iconSize}},this)},updateThemes:function(){var ts=this.querySelectorAll("property[theme]");ts&&ts.array().forEach(function(t){this.themes[t.getAttribute("theme")]={offsetX:parseInt(t.getAttribute("offsetX"))||0,offsetY:parseInt(t.getAttribute("offsetY"))||0}},this)},getOffset:function(icon,theme){var i=this.iconMap[icon];if(!i){var n=this.iconNames[Number(icon)];i=this.iconMap[n]}var t=this.themes[theme];if(i&&t){return{offsetX:i.offsetX+t.offsetX,offsetY:i.offsetY+t.offsetY}}return i},applyIcon:function(element,icon,scale){var offset=this.getOffset(icon);scale=scale||1;if(element&&offset){var icon=element._icon||document.createElement("div");var style=icon.style;style.backgroundImage="url("+this.src+")";style.backgroundPosition=-offset.offsetX*scale+"px"+" "+(-offset.offsetY*scale+"px");style.backgroundSize=scale===1?"auto":this.width*scale+"px";if(icon.parentNode!==element){element.appendChild(icon)}return icon}}});
+
+
+  (function() {
+    
+    var SKIP_ID = 'meta';
+    var metaData = {}, metaArray = {};
+
+    Polymer('core-meta', {
+      
+      /**
+       * The type of meta-data.  All meta-data with the same type with be
+       * stored together.
+       * 
+       * @attribute type
+       * @type string
+       * @default 'default'
+       */
+      type: 'default',
+      
+      alwaysPrepare: true,
+      
+      ready: function() {
+        this.register(this.id);
+      },
+      
+      get metaArray() {
+        var t = this.type;
+        if (!metaArray[t]) {
+          metaArray[t] = [];
+        }
+        return metaArray[t];
+      },
+      
+      get metaData() {
+        var t = this.type;
+        if (!metaData[t]) {
+          metaData[t] = {};
+        }
+        return metaData[t];
+      },
+      
+      register: function(id, old) {
+        if (id && id !== SKIP_ID) {
+          this.unregister(this, old);
+          this.metaData[id] = this;
+          this.metaArray.push(this);
+        }
+      },
+      
+      unregister: function(meta, id) {
+        delete this.metaData[id || meta.id];
+        var i = this.metaArray.indexOf(meta);
+        if (i >= 0) {
+          this.metaArray.splice(i, 1);
+        }
+      },
+      
+      /**
+       * Returns a list of all meta-data elements with the same type.
+       * 
+       * @attribute list
+       * @type array
+       * @default []
+       */
+      get list() {
+        return this.metaArray;
+      },
+      
+      /**
+       * Retrieves meta-data by ID.
+       *
+       * @method byId
+       * @param {String} id The ID of the meta-data to be returned.
+       * @returns Returns meta-data.
+       */
+      byId: function(id) {
+        return this.metaData[id];
+      }
+      
+    });
+    
+  })();
+  

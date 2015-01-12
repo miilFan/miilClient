@@ -1,1 +1,0 @@
-Polymer('x-sheet-main-doc');

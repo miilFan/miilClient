@@ -1,7 +1,7 @@
 {
-  "name": "miil client",
-  "description": "Demo for <miil-user-photos>",
-  "version": "0.0.1",
+  "name": "*MiilClient",
+  "description": "Miil client application for Chromebook",
+  "version": "0.1.1",
   "manifest_version": 2,
   "app": {
     "background": {
@@ -9,9 +9,9 @@
     }
   },
   "icons": {
-    "48":  "icon/icon2.png",
-    "16":  "icon/icon2.png",
-    "128": "icon/icon2.png"
+    "48":  "src/yummy.png",
+    "16":  "src/yummy.png",
+    "128": "src/yummy.png"
   },
   "permissions": ["storage", "unlimitedStorage", "<all_urls>"]
 }

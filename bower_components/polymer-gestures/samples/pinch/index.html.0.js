@@ -1,7 +1,10 @@
 
       var events = [
         // base events
-        'pinch'
+        'pinch',
+        'pinchstart',
+        'pinchend',
+        'rotate'
       ];
       find('capture', 'output');
       events.forEach(function(en) {

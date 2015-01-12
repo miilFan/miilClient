@@ -6,57 +6,47 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 --><!--
-
-`paper-menu-button` works together with a button and a `paper-dropdown` to
-implement a button that displays a drop-down when tapped on.
-
-The child element with the class `dropdown` will be used as the drop-down
-menu. It should be a `paper-dropdown` or other overlay element.
+A `paper-menu-button` is a `paper-icon-button` that opens a drop down menu when tapped.
 
 Example:
 
-    <paper-dropdown-menu>
-        <paper-dropdown class="dropdown">
-            <core-menu class="menu">
-                <paper-item>Share</paper-item>
-                <paper-item>Settings</paper-item>
-                <paper-item>Help</paper-item>
-            </core-menu>
-        </paper-dropdown>
-    </paper-dropdown-menu>
+    <paper-menu-button icon="menu">
+      <div>Menu Item 1</div>
+      <div>Menu Item 2</div>
+      <div>Menu Item 3</div>
+    </paper-menu-button>
 
-@group Paper Elements
-@element paper-menu-button
-@extends core-dropdown-base
-@status unstable
+ @group Paper Elements
+ @element paper-menu-button
+ @extends paper-focusable
 --><html><head><link href="../polymer/polymer.html" rel="import">
-<link href="../core-a11y-keys/core-a11y-keys.html" rel="import">
-<link href="../core-dropdown/core-dropdown-base.html" rel="import">
+<link href="../core-icon/core-icon.html" rel="import">
+<link href="../core-menu/core-menu.html" rel="import">
+<link href="../paper-focusable/paper-focusable.html" rel="import">
+<link href="../paper-shadow/paper-shadow.html" rel="import">
+<link href="paper-menu-button-overlay.html" rel="import">
+<link href="paper-menu-button-transition.html" rel="import">
 
-</head><body><polymer-element name="paper-menu-button" extends="core-dropdown-base" relative="">
+</head><body><polymer-element name="paper-menu-button-overlay-container" noscript="">
 <template>
-
-  <style>
-    :host {
-      display: inline-block;
-    }
-
-    :host([disabled]) {
-      pointer-events: none;
-      color: #a8a8a8;
-    }
-
-    polyfill-next-selector { content: ':host([disabled]) *'; }
-    :host([disabled]) ::content * {
-      pointer-events: none;
-    }
-  </style>
-
-  <core-a11y-keys target="{{}}" keys="enter space" on-keys-pressed="{{toggleOverlay}}"></core-a11y-keys>
-
   <content></content>
-
 </template>
-<script src="paper-menu-button.html.0.js"></script>
+</polymer-element>
+
+<polymer-element name="paper-menu-button" extends="paper-focusable" attributes="src icon opened halign valign slow" on-tap="{{tapAction}}">
+  <template>
+    <link rel="stylesheet" href="paper-menu-button.css">
+    <paper-menu-button-overlay target="{{$.overlay}}" relatedtarget="{{}}" halign="{{halign}}" valign="{{valign}}" opened="{{opened}}" transition="paper-menu-button-transition-top-{{halign}}{{slow ? '-slow' : ''}}"></paper-menu-button-overlay>
+    <paper-menu-button-overlay-container id="overlay">
+      <paper-shadow target="{{$.overlayBg}}" z="0" hasposition=""></paper-shadow>
+      <div class="paper-menu-button-overlay-ink"></div>
+      <div id="overlayBg" class="paper-menu-button-overlay-bg"></div>
+      <core-menu id="menu">
+        <content></content>
+      </core-menu>
+    </paper-menu-button-overlay-container>
+    <core-icon src="{{src}}" icon="{{icon}}"></core-icon>
+  </template>
+  <script src="paper-menu-button.html.0.js"></script>
 </polymer-element>
 </body></html>

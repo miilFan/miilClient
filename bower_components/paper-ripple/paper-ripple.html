@@ -15,7 +15,7 @@ Example:
     <paper-ripple></paper-ripple>
 
 `paper-ripple` listens to "down" and "up" events so it would display ripple
-effect when touches on it.  You can also defeat the default behavior and
+effect when touches on it.  You can also defeat the default behavior and 
 manually route the down and up actions to the ripple element.  Note that it is
 important if you call downAction() you will have to make sure to call upAction()
 so that `paper-ripple` would end the animation loop.
@@ -53,13 +53,6 @@ Apply `circle` class to make the rippling effect within a circle.
 @group Paper Elements
 @element paper-ripple
 @homepage github.io
---><!--
-Fired when the animation finishes. This is useful if you want to wait until the ripple
-animation finishes to perform some action.
-
-@event core-transitionend
-@param {Object} detail
-@param {Object} detail.node The animated node
 --><html><head><link rel="import" href="../polymer/polymer.html">
 
 </head><body><polymer-element name="paper-ripple" attributes="initialOpacity opacityDecayVelocity">
@@ -70,15 +63,9 @@ animation finishes to perform some action.
     :host {
       display: block;
       position: relative;
-      border-radius: inherit;
-      overflow: hidden;
     }
 
-    :host-context([noink]) {
-      pointer-events: none;
-    }
-
-    #bg, #waves, .wave-container, .wave {
+    #canvas {
       pointer-events: none;
       position: absolute;
       top: 0;
@@ -87,32 +74,11 @@ animation finishes to perform some action.
       height: 100%;
     }
 
-    #bg, .wave {
-      opacity: 0;
-    }
-
-    #waves, .wave {
-      overflow: hidden;
-    }
-
-    .wave-container, .wave {
+    :host(.circle) #canvas {
       border-radius: 50%;
-    }
-
-    :host(.circle) #bg,
-    :host(.circle) #waves {
-      border-radius: 50%;
-    }
-
-    :host(.circle) .wave-container {
-      overflow: hidden;
     }
 
   </style>
-
-  <div id="bg"></div>
-  <div id="waves">
-  </div>
 
 </template>
 <script src="paper-ripple.html.0.js"></script>
