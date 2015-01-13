@@ -539,6 +539,11 @@ function toggleDialog(id) {
 /*　
  * Event Listeners
  */
+document.getElementById("icon").addEventListener("click", function() {
+  toggleDialog('dialog_wait');
+  getTweets("なう飯", "#miil", 1);
+}, false);
+
 document.getElementById("dialog_btn_import").addEventListener("click", function() {
    ImportingData();
 }, false);
