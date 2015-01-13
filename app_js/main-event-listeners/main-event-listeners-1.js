@@ -16,7 +16,7 @@ document.getElementById("dialog_btn_search").addEventListener("click", function(
    if(keyword != '') {
      var query = keyword + ' ' + '#miil';
      toggleDialog('dialog_wait');
-     getTweets(keyword, query);
+     getTweets(keyword, query, 1);
    }
 }, false);
 

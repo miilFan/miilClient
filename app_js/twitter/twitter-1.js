@@ -4,7 +4,7 @@ function encodeQuery(query) {
   return window.encodeURIComponent(query);
 }
 
-function getTweets(keyword, query) {
+function getTweets(keyword, query, dialog) {
   var secretKeys = {
     /* Consumer secret */
     consumerSecret: oauthKeyTwitter.R.consumerSecret,
@@ -38,7 +38,8 @@ function getTweets(keyword, query) {
   xhr.open('GET', result, true);
   xhr.responseType = 'json';
   xhr.onload = function(e) {
-    getMiilPhotos_twitter.main(e.target.response.statuses, keyword, miil_twitter);
+    if(dialog == undefined) dialog = 1;
+    getMiilPhotos_twitter.main(e.target.response.statuses, keyword, miil_twitter, dialog);
   }
   xhr.send();
 }

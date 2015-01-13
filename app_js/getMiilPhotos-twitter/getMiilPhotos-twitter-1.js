@@ -3,7 +3,7 @@
 /**
  * アプリに写真を表示する
  */
-function miil_twitter(a) {
+function miil_twitter(a, dialog) {
   var g = document.querySelector("griddles-ui-card");
   var imageList = []; // ランダム表示するヘッダ画像の候補
   for(var j = 0; j < a.length; j++) {
@@ -24,7 +24,11 @@ function miil_twitter(a) {
   changeHeadImage(headerBgURL);
   document.getElementById('dialog_wait').style.display = 'none';
   document.getElementById('dialog_display_tw_q').innerHTML = getMiilPhotos_twitter.query;
-  toggleDialog('dialog_display_tw');
+  if(dialog == 1) {
+    toggleDialog('dialog_display_tw');
+  }else {
+    display_photos_tw();
+  }
 }
 
 function display_photos_tw() {
@@ -39,6 +43,7 @@ getMiilPhotos_twitter = {
   items: [],
   miilURLs: [],
   query: '',
+  dialog: 1,
   callback: function(){},
 
   /**
@@ -67,7 +72,7 @@ getMiilPhotos_twitter = {
         xhr.send();
       }
     }else {
-      this.callback(this.miilURLs);
+      this.callback(this.miilURLs, this.dialog);
     }
 
   },
@@ -89,7 +94,8 @@ getMiilPhotos_twitter = {
   },
 
   /* エントリポイント */
-  main: function(status, keyword, callback) {
+  main: function(status, keyword, callback, dialog) {
+    this.dialog = dialog;
     this.init(keyword, callback);
     var len = status.length;
     var res = [];

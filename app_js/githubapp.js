@@ -40,7 +40,7 @@ var appinfo = {
 /**
  * アプリに写真を表示する
  */
-function miil_twitter(a) {
+function miil_twitter(a, dialog) {
   var g = document.querySelector("griddles-ui-card");
   var imageList = []; // ランダム表示するヘッダ画像の候補
   for(var j = 0; j < a.length; j++) {
@@ -61,7 +61,11 @@ function miil_twitter(a) {
   changeHeadImage(headerBgURL);
   document.getElementById('dialog_wait').style.display = 'none';
   document.getElementById('dialog_display_tw_q').innerHTML = getMiilPhotos_twitter.query;
-  toggleDialog('dialog_display_tw');
+  if(dialog == 1) {
+    toggleDialog('dialog_display_tw');
+  }else {
+    display_photos_tw();
+  }
 }
 
 function display_photos_tw() {
@@ -76,6 +80,7 @@ getMiilPhotos_twitter = {
   items: [],
   miilURLs: [],
   query: '',
+  dialog: 1,
   callback: function(){},
 
   /**
@@ -104,7 +109,7 @@ getMiilPhotos_twitter = {
         xhr.send();
       }
     }else {
-      this.callback(this.miilURLs);
+      this.callback(this.miilURLs, this.dialog);
     }
 
   },
@@ -126,7 +131,8 @@ getMiilPhotos_twitter = {
   },
 
   /* エントリポイント */
-  main: function(status, keyword, callback) {
+  main: function(status, keyword, callback, dialog) {
+    this.dialog = dialog;
     this.init(keyword, callback);
     var len = status.length;
     var res = [];
@@ -274,7 +280,7 @@ function encodeQuery(query) {
   return window.encodeURIComponent(query);
 }
 
-function getTweets(keyword, query) {
+function getTweets(keyword, query, dialog) {
   var secretKeys = {
     /* Consumer secret */
     consumerSecret: oauthKeyTwitter.R.consumerSecret,
@@ -308,7 +314,8 @@ function getTweets(keyword, query) {
   xhr.open('GET', result, true);
   xhr.responseType = 'json';
   xhr.onload = function(e) {
-    getMiilPhotos_twitter.main(e.target.response.statuses, keyword, miil_twitter);
+    if(dialog == undefined) dialog = 1;
+    getMiilPhotos_twitter.main(e.target.response.statuses, keyword, miil_twitter, dialog);
   }
   xhr.send();
 }
@@ -454,7 +461,6 @@ function griddlesAppInit() {
   randomStyle();
   griddles_apis = document.querySelector("griddles-ui-card").apis;
   var smpls = sample_data;
-
   appStorage({"key": YUMMY2}, "get", function(e, keys) {
     var key = keys[0];
     var json = e[key];
@@ -546,7 +552,7 @@ document.getElementById("dialog_btn_search").addEventListener("click", function(
    if(keyword != '') {
      var query = keyword + ' ' + '#miil';
      toggleDialog('dialog_wait');
-     getTweets(keyword, query);
+     getTweets(keyword, query, 1);
    }
 }, false);
 

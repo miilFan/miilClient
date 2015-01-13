@@ -9,7 +9,6 @@ function griddlesAppInit() {
   randomStyle();
   griddles_apis = document.querySelector("griddles-ui-card").apis;
   var smpls = sample_data;
-
   appStorage({"key": YUMMY2}, "get", function(e, keys) {
     var key = keys[0];
     var json = e[key];
