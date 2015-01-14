@@ -5,7 +5,7 @@ var appinfo = {
   "name": "MiilClient",
   "edition": "oss",
   "lang": "日本語",
-  "version": "0.1.1 beta",
+  "version": "0.1.5 beta",
   "build": new Date().toString(),
   /** methods **/
   print: function(id) {

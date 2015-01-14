@@ -5,8 +5,8 @@ var appinfo = {
   "name": "MiilClient",
   "edition": "oss-aa",
   "lang": "日本語",
-  "version": "0.1.1 beta",
-  "build": "2015年1月6日 火曜日",
+  "version": "0.1.5 beta",
+  "build": "2015年1月14日 水曜日",
   /** methods **/
   print: function(id) {
     var html = '';
