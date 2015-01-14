@@ -3,11 +3,6 @@
 /*　
  * Event Listeners
  */
-document.getElementById("icon").addEventListener("click", function() {
-  toggleDialog('dialog_wait');
-  getTweets("なう飯", "#miil", 1);
-}, false);
-
 document.getElementById("dialog_btn_import").addEventListener("click", function() {
    ImportingData();
 }, false);
@@ -22,6 +17,9 @@ document.getElementById("dialog_btn_search").addEventListener("click", function(
      var query = keyword + ' ' + '#miil';
      toggleDialog('dialog_wait');
      getTweets(keyword, query, 1);
+   }else {
+     toggleDialog('dialog_wait');
+     getTweets("なう飯", "#miil", 1);
    }
 }, false);
 

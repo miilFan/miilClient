@@ -1,6 +1,6 @@
 // -*- coding: utf-8 -*-
 // Copyright 2015 daiz. All Rights Reserved.
-//// androidapp.js (relese-androidapp-build)
+//// githubapp.js (relese-githubapp-build)
 
 //// header-scroll-1.js
 //// Generated in 2015-01-12 17:38:31.
@@ -14,15 +14,15 @@ addEventListener('core-header-transform', function(e) {
       'scale(' + scale + ') translateZ(0)';
 });
 
-//// about-3.js
-//// Generated in 2015-01-12 18:15:38.
+//// about-1.js
+//// Generated in 2015-01-12 17:25:08.
 var appinfo = {
   /** values **/
   "name": "MiilClient",
-  "edition": "oss-aa",
+  "edition": "oss",
   "lang": "日本語",
   "version": "0.1.1 beta",
-  "build": "2015年1月6日 火曜日",
+  "build": new Date().toString(),
   /** methods **/
   print: function(id) {
     var html = '';
@@ -442,23 +442,12 @@ function changeHeadImage(url) {
   }
 }
 
-//// griddles-app-card-clicked-2.js
-//// Generated in 2015-01-12 18:24:11.
+//// griddles-app-card-clicked-1.js
+//// Generated in 2015-01-12 17:53:18.
 function griddlesAppCardClicked(card) {
+   /* open web page */
    changeHeadImage(card[0].src);
-   /** 
-   miil側の仕様により、http://miil.me/g/ で始まるurlではうまく
-   webintentが機能しない（ミイルアプリと連携されない）ことがあるため、
-   /g/ を /p/ に置換して、http://miil.me/p/ にする必要がある。
-   */
-   var url = card[0].data.webpage;
-   url = url.replace(/\/g\//, '/p/');
-   window.plugins.webintent.startActivity({
-     action: window.plugins.webintent.ACTION_VIEW,
-     url: url},
-     function() {},
-     function() {alert('Failed to open URL via Android Intent')}
-   );
+   window.open(card[0].data.webpage);
 }
 
 //// griddles-app-init-1.js
