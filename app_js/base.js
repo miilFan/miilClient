@@ -420,8 +420,8 @@ function changeHeadImage(url) {
  */
 function griddlesAppInit() {
   console.log("appInit..");
-  /* ツールバーの配色をランダムに決める */
-  randomStyle();
+  randomStyle(); /* ツールバーの配色をランダムに決める */
+  /** apricot.import griddles-app-init.js/R_griddles-app-init **/
   griddles_apis = document.querySelector("griddles-ui-card").apis;
   var smpls = sample_data;
   appStorage({"key": YUMMY2}, "get", function(e, keys) {
