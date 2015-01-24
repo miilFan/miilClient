@@ -1,5 +1,16 @@
-//// griddles-app-card-clicked-2.js
-//// Generated in 2015-01-12 18:24:11.
+/** apricot.R = oss **/
+function griddlesAppCardClicked(card) {
+   changeHeadImage(card[0].src);
+   window.open(card[0].data.webpage);
+}
+
+/** apricot.R = oss-ca **/
+function griddlesAppCardClicked(card) {
+   changeHeadImage(card[0].src);
+   window.open(card[0].data.webpage);
+}
+
+/** apricot.R = oss-aa **/
 function griddlesAppCardClicked(card) {
    changeHeadImage(card[0].src);
    /** 

@@ -1,9 +1,9 @@
-// -*- coding: utf-8 -*-
-// Copyright 2015 daiz. All Rights Reserved.
-//// githubapp.js (relese-githubapp-build)
+/**
+miilClient
+Copyright 2015 daiz, FoodAppProject. All Rights Reserved. 
+*/
+// code version: /** apricot.set V_codeversion **/
 
-//// header-scroll-1.js
-//// Generated in 2015-01-12 17:38:31.
 // custom transformation: scale header's title
 var titleStyle = document.querySelector('.title').style;
 addEventListener('core-header-transform', function(e) {
@@ -14,29 +14,19 @@ addEventListener('core-header-transform', function(e) {
       'scale(' + scale + ') translateZ(0)';
 });
 
-//// about-1.js
-//// Generated in 2015-01-12 17:25:08.
 var appinfo = {
-  /** values **/
-  "name": "MiilClient",
-  "edition": "oss",
-  "lang": "日本語",
-  "version": "0.1.5 beta",
-  "build": new Date().toString(),
-  /** methods **/
+//! methods
   print: function(id) {
     var html = '';
-    html += this.name + "<br>";
-    html += "エディション " + this.edition + "<br>";
-    html += "バージョン " + this.version + "<br>";
-    html += "ビルド日 " + this.build + "<br>";
-    html += "言語 " + this.lang + "<br>";
+    html += "/** apricot.set V_app **/ <br>";
+    html += "エディション /** apricot.set V_edition **/ <br>";
+    html += "バージョン /** apricot.set V_version **/ <br>";
+    html += "ビルド日 /** apricot.set V_build **/ <br>";
+    html += "言語 日本語 <br>";
     document.querySelector("#" + id).innerHTML = html;
   }
 };
 
-//// getMiilPhotos-twitter-1.js
-//// Generated in 2015-01-12 17:30:02.
 /**
  * アプリに写真を表示する
  */
@@ -154,8 +144,6 @@ getMiilPhotos_twitter = {
   }
 }
 
-//// getMiilPhotos-miiluser-1.js
-//// Generated in 2015-01-12 17:33:07.
 /**
  * アプリに写真を表示する
  */
@@ -221,7 +209,7 @@ getMiilPhotos_miiluser = {
     var flag = 1;
     if(next_url == (void 0) || next_url == null || this.nextpg < 0) flag = 0;
     if(this.given_next_pg != '') {
-      //if(this.given_next_pg == next_url) flag = 0;
+      //!if(this.given_next_pg == next_url) flag = 0;
     }
     return flag;
   },
@@ -274,26 +262,20 @@ getMiilPhotos_miiluser = {
   }
 }
 
-//// twitter-1.js
-//// Generated in 2015-01-12 17:34:42.
 function encodeQuery(query) {
   return window.encodeURIComponent(query);
 }
 
 function getTweets(keyword, query, dialog) {
   var secretKeys = {
-    /* Consumer secret */
-    consumerSecret: oauthKeyTwitter.R.consumerSecret,
-    /* Access token secret */
-    tokenSecret:    oauthKeyTwitter.R.tokenSecret
+    consumerSecret: "/** apricot.set V_twitter_ConsumerSecret **/",
+    tokenSecret:    "/** apricot.set V_twitter_AccessTokenSecret **/"
   };
 
   var parameters = {
     oauth_signature_method: "HMAC-SHA1",
-    /* Consumer key */
-    oauth_consumer_key: oauthKeyTwitter.R.oauth_consumer_key,
-    /* Access token */
-    oauth_token:        oauthKeyTwitter.R.oauth_token,
+    oauth_consumer_key: "/** apricot.set V_twitter_oauthConsumerKey **/",
+    oauth_token:        "/** apricot.set V_twitter_oauthAccessToken **/",
     count: 42,
     q: query,
   };
@@ -320,19 +302,12 @@ function getTweets(keyword, query, dialog) {
   xhr.send();
 }
 
-
-
-//// global-vars-1.js
-//// Generated in 2015-01-12 17:49:45.
 var YUMMY2 = "griddles_yummy2_a";
 var MAINKEY = "ごちそう";
 var TAGMANAGE = "タグを管理";
 var griddles_apis = {};
 var yummy2 = {};
 
-
-//// create-keywords-list-1.js
-//// Generated in 2015-01-12 17:51:08.
 //
 // クエリリストをつくる
 //
@@ -377,8 +352,6 @@ function creatingKeyList(data, id) {
     }
 }
 
-//// show-miils-1.js
-//// Generated in 2015-01-12 18:05:08.
 //
 // クエリに対応するカードを表示する
 //
@@ -423,8 +396,6 @@ function miils() {
   });
 };
 
-//// change-head-img-1.js
-//// Generated in 2015-01-12 17:57:12.
 function changeHeadImage(url) {
   var headerBg = document.querySelector("core-scroll-header-panel").headerBg;
   if(isChromeApp() == true) {
@@ -442,16 +413,8 @@ function changeHeadImage(url) {
   }
 }
 
-//// griddles-app-card-clicked-1.js
-//// Generated in 2015-01-12 17:53:18.
-function griddlesAppCardClicked(card) {
-   /* open web page */
-   changeHeadImage(card[0].src);
-   window.open(card[0].data.webpage);
-}
+/** apricot.import griddles-app-card-clicked.js/R_griddles-app-card-clicked **/
 
-//// griddles-app-init-1.js
-//// Generated in 2015-01-12 17:46:05.
 /*
  * griddles-ui-card の main関数
  */
@@ -475,8 +438,6 @@ function griddlesAppInit() {
   });
 }
 
-//// griddles-scroll-end-1.js
-//// Generated in 2015-01-12 17:47:11.
 /*
  * すべてのカード表示終了時に呼ばれる関数
  */
@@ -489,8 +450,6 @@ function griddlesScrollEnd() {
   }
 }
 
-//// import-data-1.js
-//// Generated in 2015-01-12 17:59:32.
 function ImportingData() {
   var import_code = document.getElementById("dialog_input_import").value;
   if(import_code != "") {
@@ -499,14 +458,10 @@ function ImportingData() {
   }
 }
 
-//// remove-data-1.js
-//// Generated in 2015-01-12 18:00:32.
 function removingData() {
   appStorage({"key": YUMMY2}, "remove", griddlesAppInit);
 }
 
-//// randomStyle-1.js
-//// Generated in 2015-01-12 17:43:44.
 function randomStyle() {
   var colors = ["#f1f1f1", "#EADFC6"];
   var len = colors.length;
@@ -514,8 +469,6 @@ function randomStyle() {
   document.querySelector("core-toolbar").style.color = colors[idx];
 }
 
-//// is-chromeapp-1.js
-//// Generated in 2015-01-12 17:55:22.
 function isChromeApp() {
     var res = false;
     if(window.chrome != undefined) {
@@ -527,15 +480,11 @@ function isChromeApp() {
   return res;
 }
 
-//// toggle-dialog-1.js
-//// Generated in 2015-01-12 17:58:17.
 function toggleDialog(id) {
   var dialog = document.querySelector('#' + id);
   dialog.toggle();
 }
 
-//// main-event-listeners-1.js
-//// Generated in 2015-01-12 17:42:02.
 /*　
  * Event Listeners
  */
@@ -590,4 +539,3 @@ window.addEventListener("click", function(e) {
      toggleDialog('dialog_user');
    }
 },false);
-

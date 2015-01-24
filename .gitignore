@@ -1,7 +1,5 @@
 oauth-keys/key.twitter.js
 bower_components/
-app_js/androidapp.js
-app_js/androidapp.js.pre
-app_js/chromeapp.js
-app_js/chromeapp.js.pre
-app_js/githubapp.js.pre
+app_js/commandline.txt
+app_js/prev/
+app_js/miilclient-app.js
