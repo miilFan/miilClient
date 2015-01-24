@@ -6,7 +6,7 @@ var appinfo = {
   "edition": "oss-ca",
   "lang": "日本語",
   "version": "0.1.5 beta",
-  "build": "2015年1月3日 土曜日",
+  "build": "2015年1月14日 水曜日",
   /** methods **/
   print: function(id) {
     var html = '';
