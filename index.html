@@ -21,10 +21,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="shortcut icon" href="src/yummy.png" type="image/png">
   <link rel="apple-touch-icon-precomposed" href="src/yummy.png">
 
+  <script src="bower_components/platform/platform.js"></script>
   <script src="lib/oauth.js"></script>
   <script src="lib/sha1.js"></script>
 
-  <script src="bower_components/platform/platform.js"></script>
   <link rel="import" href="bower_components/core-icon-button/core-icon-button.html">
   <link rel="import" href="bower_components/core-icons/social-icons.html">
 
@@ -178,7 +178,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-menu-button icon="more-vert" halign="right">
         <paper-item label="miilClient について" class="mi" id="about"></paper-item>
       </paper-menu-button>
-      <div class="bottom indent title">miilClient</div>
+      <div class="bottom indent title" id="app_name">miilClient</div>
 
     </core-toolbar>
 
@@ -234,6 +234,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div id='appinfo'></div>
     <paper-button label="Done" affirmative="" autofocus=""></paper-button>
 </paper-dialog>
+
+<!-- Application -->
+<div id="sbr" style="width:30px; height:1px; overflow-x:hidden; overflow-y:scroll; visibility:hidden">
+  <!-- scroll-bar幅取得のためのボックス -->
+</div>  
 
 <!-- Application -->
 <script src="app_js/miilclient-app.js"></script>

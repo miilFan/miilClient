@@ -414,6 +414,8 @@ function changeHeadImage(url) {
 }
 
 /** apricot.import griddles-app-card-clicked.js/R_griddles-app-card-clicked **/
+/** apricot.import compute-flexible-width.js/R_compute-flexible-width **/
+/** apricot.import device-format.js/R_device-format **/
 
 /*
  * griddles-ui-card の main関数
@@ -421,7 +423,7 @@ function changeHeadImage(url) {
 function griddlesAppInit() {
   console.log("appInit..");
   randomStyle(); /* ツールバーの配色をランダムに決める */
-  /** apricot.import griddles-app-init.js/R_griddles-app-init **/
+  deviceFmt();
   griddles_apis = document.querySelector("griddles-ui-card").apis;
   var smpls = sample_data;
   appStorage({"key": YUMMY2}, "get", function(e, keys) {
