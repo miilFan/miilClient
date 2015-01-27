@@ -1,6 +1,6 @@
 /**
 miilClient
-Copyright 2015 daiz, FoodAppProject. All Rights Reserved. 
+Copyright 2015 daiz, FoodAppProject. All Rights Reserved.
 */
 // code version: /** apricot.set V_codeversion **/
 
@@ -49,7 +49,10 @@ function miil_twitter(a, dialog) {
     headerBgURL = imageList[r];
   }
   changeHeadImage(headerBgURL);
-  document.getElementById('dialog_wait').style.display = 'none';
+  if(document.getElementById('dialog_wait').style.display != 'none') {
+    //document.getElementById('dialog_wait').style.display = 'none';
+    toggleDialog('dialog_wait');
+  }
   document.getElementById('dialog_display_tw_q').innerHTML = getMiilPhotos_twitter.query;
   if(dialog == 1) {
     toggleDialog('dialog_display_tw');
