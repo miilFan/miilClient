@@ -45,6 +45,7 @@ var yummy2 = {};
 // クエリリストをつくる
 //
 function creatingKeyList(data, id) {
+  griddles_apis = document.querySelector("griddles-ui-card").apis;
   document.getElementById(id).innerHTML = '<paper-item label="すべてのごちそう" class="menu_item" id="btn_all_gochiso" data-label="ごちそう"></paper-item>';
   var tags = [];
   var str_tags = "," + tags.toString() + ",";
@@ -157,20 +158,25 @@ function griddlesAppInit() {
   console.log("appInit..");
   randomStyle(); /* ツールバーの配色をランダムに決める */
   deviceFmt();
-  griddles_apis = document.querySelector("griddles-ui-card").apis;
+  var g = document.querySelector("griddles-ui-card");
+  var griddles_apis = g.apis;
   var smpls = sample_data;
   appStorage({"key": YUMMY2}, "get", function(e, keys) {
     var key = keys[0];
     var json = e[key];
+    console.log(777);
     if(json != undefined && json != null) {
        smpls = json;
        var queries = creatingKeyList(smpls, "menus");
+       console.log(queries);
     }else if(json == undefined) {
        appStorage({"key": YUMMY2, "value": smpls}, "set", function() {
            var queries = creatingKeyList(smpls, "menus");
+           console.log(queries);
        })
     }
   });
+  showCategories();
 }
 
 /*
@@ -232,9 +238,14 @@ document.getElementById("about").addEventListener("click", function() {
    toggleDialog('dialog_about');
 }, false);
 
+document.getElementById("btn_search").addEventListener("click", function() {
+  $("#stage_category").slideToggle();
+}, false);
+
 window.addEventListener("click", function(e) {
    var id = e.target.id;
    var dataset = e.target.dataset;
+   var id_type = id.split("_")[0];
    if(dataset.label != undefined && dataset.label != TAGMANAGE) {
        var now = document.querySelector("griddles-ui-card").query;
        if(now != dataset.label) {
@@ -244,7 +255,14 @@ window.addEventListener("click", function(e) {
          console.log("同一のクエリ.");
        }
    }
+
    if(id == 'miiluser_set') {
      toggleDialog('dialog_user');
+   }
+
+   if(id_type == "category") {
+     var v = +(id.split("_")[1]);
+     $("#stage_category").slideToggle();
+     getMiilPhotos_miiluser.main(v, 1, "",  miil_user);
    }
 },false);

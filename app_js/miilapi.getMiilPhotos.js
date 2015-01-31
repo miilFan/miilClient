@@ -118,3 +118,22 @@ getMiilPhotos_miiluser = {
     this.getPhotoURL(url);
   }
 }
+
+/* categoryを解析する */
+function showCategories() {
+  var cs = miil_normal;
+  var h = window.innerHeight - 210;
+  var s = document.querySelector("#stage_category");
+  var g = document.querySelector("griddles-ui-card");
+  s.style.height = h + "px";
+  for(var i = 0; i < cs.length; i++) {
+    var n = cs[i].name;
+    var c = cs[i].category_id;
+    s.innerHTML += "<h2>" + n  +"</h2>";
+    for(var j = 0; j < cs[i].categories.length; j++) {
+      n = cs[i].categories[j].name;
+      c = cs[i].categories[j].category_id;
+      s.innerHTML += "<a href='#' id='category_"+c+"'>" + n  +"</a>, "
+    }
+  }
+}
