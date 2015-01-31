@@ -181,7 +181,7 @@ function griddlesScrollEnd() {
   var username = document.getElementById('username').value || document.getElementById('username').placeholder;
   var reg = new RegExp(username, 'i');
   if(nowquery.search(reg) >= 0) {
-    getMiilPhotos_miiluser.main(0, username, miil_user);
+    getMiilPhotos_miiluser.main(-1, 0, username, miil_user);
   }
 }
 

@@ -1,7 +1,7 @@
 /** apricot.R = 1 **/
 document.getElementById("btn_user").addEventListener("click", function() {
    var username = document.getElementById('username').value || '';
-   getMiilPhotos_miiluser.main(1, username, miil_user);
+   getMiilPhotos_miiluser.main(-1, 1, username, miil_user);
 }, false);
 
 /**
@@ -60,8 +60,9 @@ getMiilPhotos_miiluser = {
   miil_items: [],
   initflag: 0,
 
-  baseURL: function() {
-    return "http://api.miil.me/api/users/"+ this.user +"/photos/public.json";
+  baseURL: function(a) {
+    if(a < 0) return "http://api.miil.me/api/users/"+ this.user +"/photos/public.json";
+    else      return "http://miil.me/api/photos/recent/categories/"+ a +".json";
   },
 
   /* 次のページが有効かどうかを判定する */
@@ -92,22 +93,18 @@ getMiilPhotos_miiluser = {
         item.received = photo;
         items.push(item);
       }
-      /* 次のページが有効かどうかを判断し、情報を更新する */
+      /* 次ページの情報を更新する */
       var next_url = res.next_url;
-      var f = getMiilPhotos_miiluser.isValidNextURL(next_url);
-      if(f == 1) {
-        getMiilPhotos_miiluser.nextpg = Number((next_url.split("&")[0]).split("?page=")[1]);
-        getMiilPhotos_miiluser.given_next_pg = next_url;
-      }else {
-        getMiilPhotos_miiluser.nextpg = -1; // 無効にする
-      }
+      getMiilPhotos_miiluser.nextpg += 1;
+      getMiilPhotos_miiluser.given_next_pg = next_url;
+
       getMiilPhotos_miiluser.callback();
     }
     xhr.send();
   },
 
   /* エントリポイント */
-  main: function(initflag, username, callback) {
+  main: function(category, initflag, username, callback) {
     this.initflag = initflag;
     this.callback = callback;
     this.user = username;
@@ -116,8 +113,8 @@ getMiilPhotos_miiluser = {
       this.nextpg = 0;
     }
     this.miil_items = [];
-    var url = this.baseURL();
-    if(this.nextpg > 0) url += this.page + this.nextpg;
+    var url = this.baseURL(category);
+    if(this.nextpg > 0) url = this.given_next_pg;
     this.getPhotoURL(url);
   }
 }
