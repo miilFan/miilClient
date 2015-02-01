@@ -133,7 +133,16 @@ function showCategories() {
     for(var j = 0; j < cs[i].categories.length; j++) {
       n = cs[i].categories[j].name;
       c = cs[i].categories[j].category_id;
-      s.innerHTML += "<a href='#' id='category_"+c+"'>" + n  +"</a>, "
+      n = qn(n); /* 個別対応 */
+      var pb = "<paper-button id='category_{c}' label='{n}'></paper-button> ";
+      s.innerHTML += g.apis.make(pb, {c: c, n: n});
     }
   }
+}
+
+function qn(q) {
+  if(q.search(/手料理：/) != -1) {
+    q = q.replace("手料理：", "");
+  }
+  return q;
 }

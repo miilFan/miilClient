@@ -164,15 +164,12 @@ function griddlesAppInit() {
   appStorage({"key": YUMMY2}, "get", function(e, keys) {
     var key = keys[0];
     var json = e[key];
-    console.log(777);
     if(json != undefined && json != null) {
        smpls = json;
        var queries = creatingKeyList(smpls, "menus");
-       console.log(queries);
     }else if(json == undefined) {
        appStorage({"key": YUMMY2, "value": smpls}, "set", function() {
            var queries = creatingKeyList(smpls, "menus");
-           console.log(queries);
        })
     }
   });
