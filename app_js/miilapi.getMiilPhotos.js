@@ -134,8 +134,8 @@ function showCategories() {
       n = cs[i].categories[j].name;
       c = cs[i].categories[j].category_id;
       n = qn(n); /* 個別対応 */
-      var pb = "<paper-button id='category_{c}' label='{n}'></paper-button> ";
-      s.innerHTML += g.apis.make(pb, {c: c, n: n});
+      var pb = "<paper-button id='category_{c}' label='{n}' style='{s}'></paper-button> ";
+      s.innerHTML += g.apis.make(pb, {c: c, n: n, s: "color: #4285F4;"});
     }
   }
 }
