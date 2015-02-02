@@ -6,10 +6,11 @@ Install custom elements via bower:
 ```
 bower install
 ```
-
-# Step 2: Set the Twitter API keys
-1. Fill some blanks of `key.twitter.placeholder.js`, which is located in the directory `oauth-keys`.
-2. Change name of this file to `key.twitter.js` from `key.twitter.placeholder.js`.
+# Step 2: Build the app
+Run the following command.
+```
+python ~/apricotPie/apricot.py build miilclient-app-ca.js base.js,R_griddles-app-card-clicked=oss-ca,R_device-format=oss-ca,R_compute-flexible-width=1,R_ma=1,R_tw=0,V_codeversion=1,V_edition=oss-ca,V_app=*MiilClient,V_version="0.2.0 beta",V_build="2015/02/02" utf-8 //!
+```
 
 # Step 3: Install to Chrome
 1. Visit `chrome://extensions` in your chrome browser.
