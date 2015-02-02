@@ -192,12 +192,12 @@ function ImportingData() {
   var import_code = document.getElementById("dialog_input_import").value;
   if(import_code != "") {
       var import_code = JSON.parse(import_code);
-      appStorage({"key": YUMMY2, "value": import_code}, "set", griddlesAppInit);
+      appStorage({"key": YUMMY2, "value": import_code}, "set", function(){});
   }
 }
 
 function removingData() {
-  appStorage({"key": YUMMY2}, "remove", griddlesAppInit);
+  appStorage({"key": YUMMY2}, "remove", function(){});
 }
 
 function randomStyle() {

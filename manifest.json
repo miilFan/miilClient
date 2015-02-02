@@ -1,5 +1,5 @@
 {
-  "name": "*MiilClient",
+  "name": "MiilClient",
   "description": "Miil client application for Chromebook",
   "version": "0.2.0",
   "manifest_version": 2,
