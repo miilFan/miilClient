@@ -182,7 +182,8 @@ function griddlesAppInit() {
  */
 function griddlesScrollEnd() {
   var nowquery = document.querySelector("griddles-ui-card").query;
-  var username = document.getElementById('username').value || document.getElementById('username').placeholder;
+//!  var username = document.getElementById('username').value || document.getElementById('username').placeholder;
+  var username = getMiilPhotos_miiluser.user;
   var reg = new RegExp(username, 'i');
   if(nowquery.search(reg) >= 0) {
     getMiilPhotos_miiluser.main(-1, 0, username, miil_user);
