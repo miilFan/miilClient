@@ -2,7 +2,7 @@
 miilClient
 Copyright 2015 daiz, FoodAppProject. All Rights Reserved.
 */
-// code version: /** apricot.set V_codeversion **/
+// /** apricot.set V_codeversion **/
 
 // custom transformation: scale header's title
 var titleStyle = document.querySelector('.title').style;
@@ -240,6 +240,14 @@ document.getElementById("btn_search").addEventListener("click", function() {
   $("#stage_category").slideToggle();
 }, false);
 
+document.getElementById("user_me").addEventListener("click", function() {
+  /* 登録されたユーザー名を反映 */
+  appStorage({"key": "username"}, "get", function(v) {
+    if(v.username == undefined) v.username = '';
+    document.querySelector("#username").value = v.username;
+  });
+}, false);
+
 window.addEventListener("click", function(e) {
    var id = e.target.id;
    var dataset = e.target.dataset;
@@ -256,6 +264,13 @@ window.addEventListener("click", function(e) {
 
    if(id == 'miiluser_set') {
      toggleDialog('dialog_user');
+   }
+
+   if(id == 'dialog_btn_user') {
+     var v = document.querySelector("#username").value || 'daiz';
+     if(v != '') {
+       appStorage({"key": "username", "value": v}, "set", function() {});
+     }
    }
 
    if(id_type == "category") {
