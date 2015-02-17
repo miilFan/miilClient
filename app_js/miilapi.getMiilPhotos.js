@@ -49,7 +49,7 @@ function miil_user() {
 }
 
 /**
- * miilのユーザー名から写真を検索
+ * miilのユーザー名から写真を取得
  */
 getMiilPhotos_miiluser = {
   callback: function(){},
@@ -69,9 +69,6 @@ getMiilPhotos_miiluser = {
   isValidNextURL: function(next_url) {
     var flag = 1;
     if(next_url == (void 0) || next_url == null || this.nextpg < 0) flag = 0;
-    if(this.given_next_pg != '') {
-      //!if(this.given_next_pg == next_url) flag = 0;
-    }
     return flag;
   },
 

@@ -29,6 +29,7 @@ var appinfo = {
 
 /** apricot.import twitter.getMiilPhotos.js/R_tw **/
 /** apricot.import miilapi.getMiilPhotos.js/R_ma **/
+/** apricot.import miilapi.getFollowings.js/R_mf **/
 
 function encodeQuery(query) {
   return window.encodeURIComponent(query);
