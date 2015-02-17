@@ -4,6 +4,11 @@ document.getElementById("btn_user").addEventListener("click", function() {
    getMiilPhotos_miiluser.main(-1, 1, username, miil_user);
 }, false);
 
+document.getElementById("icon").addEventListener("click", function() {
+   var username = 'miilme';
+   getMiilPhotos_miiluser.main(-1, 1, username, miil_user);
+}, false);
+
 /**
  * アプリに写真を表示する
  */
