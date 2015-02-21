@@ -1,4 +1,4 @@
 miilClient
 =====
 
-[https://chrome.google.com/webstore/detail/miilclient/kochkbiapblbmondhfeffokbcjhgmpan]
+https://chrome.google.com/webstore/detail/miilclient/kochkbiapblbmondhfeffokbcjhgmpan
