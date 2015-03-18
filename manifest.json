@@ -1,17 +1,22 @@
 {
-  "name": "MiilClient",
-  "description": "Miil client application for Chromebook",
-  "version": "0.2.1",
   "manifest_version": 2,
+  "name": "MiilClient",
+  "short_name": "MiilClient",
+  "description": "Miil client application for Chrome.",
+  "version": "0.3.0",
+  "minimum_chrome_version": "38",
+
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+
   "app": {
     "background": {
       "scripts": ["background.js"]
     }
   },
-  "icons": {
-    "48":  "src/yummy.png",
-    "16":  "src/yummy.png",
-    "128": "src/yummy.png"
-  },
+
   "permissions": ["storage", "unlimitedStorage", "<all_urls>"]
 }
