@@ -137,7 +137,7 @@ function rescuePrevData() {
   appStorage({"key": APPKEY_PREV}, "get", function(e, keys) {
     var key = keys[0];
     var smpls = e[key];
-    if(smpls == undefined || smpls == nul) {
+    if(smpls == undefined || smpls == null) {
       ms.getElementById("input_prevdata").placeholder = "該当データなし";
     }else {
       ms.getElementById("input_prevdata").value = JSON.stringify(smpls);
