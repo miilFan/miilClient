@@ -95,6 +95,7 @@ function randomStyle() {
   var len = colors.length;
   var idx = Math.floor(Math.random() * len);
   ms.querySelector("core-toolbar").style.color = colors[idx];
+  ms.querySelector(".title").style.color = colors[idx];
 }
 
 // ダイアログの表示／非表示切り替え
