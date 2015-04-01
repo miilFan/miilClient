@@ -8,6 +8,14 @@ var release_blog_entries = [
       }
     },
     {
+        text: ["miilClient v0.3.1 リリースブログ", "block"],
+        src: "miil-client/assets/0.3.1.jpg",
+        dataset: {
+          shadowZ: 0,
+          page: "http://daiiz.hatenablog.com/entry/2015/03/19/150100"
+        }
+    },
+    {
         text: ["miilClient v0.2.1 リリースブログ", "block"],
         src: "miil-client/assets/0.2.1.jpg",
         dataset: {
