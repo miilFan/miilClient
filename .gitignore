@@ -1,6 +1,6 @@
 www/
 !www/README.md
-original/bower_component/
+original/bower_components/
 releases/
 oauth-keys/key.twitter.js
 
