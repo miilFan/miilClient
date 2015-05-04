@@ -1,0 +1,12 @@
+{
+  "original": "original",
+  "destination": "www",
+  "target": ["android", "chromeapp"],
+
+  "comment_head": "////",
+  "files": [
+    "index.html",
+    "miil-client/application/main.js",
+    "miil-client/miil-client.html"
+  ]
+}
