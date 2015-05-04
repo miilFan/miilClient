@@ -12,7 +12,6 @@ oauth-keys/key.twitter.js
 platforms/android/assets/www
 platforms/android/bin/
 platforms/android/gen/
-platforms/android/.gradle
 
 local.properties
 ._*
