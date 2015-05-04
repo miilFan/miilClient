@@ -22,6 +22,7 @@ $ cordova run android
 $ python universe.py chromeapp
 $ chrome run www
 ```
+コマンド`chrome`のソースコードは[こちら](https://gist.github.com/daiz713/8fceee8f00699b70ce21)から入手可能.
 
 # Chrome Web Store で入手
 https://chrome.google.com/webstore/detail/miilclient/kochkbiapblbmondhfeffokbcjhgmpan
