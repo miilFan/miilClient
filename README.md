@@ -1,5 +1,7 @@
 miilClient
 =====
+![](https://raw.githubusercontent.com/daiz713/Screenshots/master/miilClient030.png)
+
 # 準備
 ```
 $ git clone https://github.com/daiz713/miilClient.git
@@ -21,6 +23,8 @@ $ python universe.py chromeapp
 $ chrome run www
 ```
 
-![](https://raw.githubusercontent.com/daiz713/Screenshots/master/miilClient030.png)
-
+# Chrome Web Store で入手
 https://chrome.google.com/webstore/detail/miilclient/kochkbiapblbmondhfeffokbcjhgmpan
+
+# Google Play で入手
+https://play.google.com/store/apps/details?id=app.daiz.miilclient
