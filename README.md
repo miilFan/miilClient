@@ -2,10 +2,11 @@ miilClient
 =====
 ![](https://raw.githubusercontent.com/daiz713/Screenshots/master/miilClient030.png)
 
-# 準備
+# 初回準備
 ```
 $ git clone https://github.com/daiz713/miilClient.git
-$ cd miilClient
+$ cd miilClient/www
+$ unzip polymer_components_055.zip
 ```
 
 # Chromeアプリとして起動
