@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title>MiilClient</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="shortcut icon" href="icon.png" type="image/png">
+    <link rel="apple-touch-icon-precomposed" href="icon.png">
+
+    <!-- import polymer elements -->
+    <script src="polymer_components_055/webcomponentsjs/webcomponents.min.js"></script>
+    <link rel="import" href="polymer_components_055/polymer/polymer.html">
+    <link rel="import" href="miil-client/miil-client.html" />
+
+    <!-- load scripts and styles for an app -->
+    <script src="lib/jquery-1.11.0.min.js"></script>
+    <script src="polymer_components_055/appStorage/appStorage.js"></script>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        background-color: #e9e7e4;/*#e5e5e5;*/
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+      }
+    </style>
+  </head>
+  <body fullbleed layout vertical>
+    <miil-client></miil-client>
+  </body>
+</html>

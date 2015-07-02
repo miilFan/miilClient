@@ -1,0 +1,16 @@
+{
+  "name": "miilClient",
+  "description": "",
+  "homepage": "",
+  "keywords": [
+  ],
+  "author": "daiz",
+  "private": true,
+  "dependencies": {
+    "polymer": "Polymer/polymer#^0.5.5",
+    "paper-elements": "Polymer/paper-elements#^0.5.5",
+    "griddle-cards": "griddles-ui-card/griddle-cards#^0.4.3",
+    "appStorage": "daiz713/appStorage#^0.2.0",
+    "refactor_csp": "https://raw.githubusercontent.com/daiz713/RefactorForCSP/master/refactor_csp.py"
+  }
+}
