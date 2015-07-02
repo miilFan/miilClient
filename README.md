@@ -6,23 +6,14 @@ miilClient
 ```
 $ git clone https://github.com/daiz713/miilClient.git
 $ cd miilClient
-$ sh setup.sh
-```
-
-# Androidアプリとして起動
-MacにAndroidデバイスを接続して, `miilClient/`において下記のコマンドを実行.
-```
-$ python universe.py android
-$ cordova run android
 ```
 
 # Chromeアプリとして起動
 `miilClient/`において下記のコマンドを実行.
 ```
-$ python universe.py chromeapp
-$ chrome run www
+$ sh miilClient.sh
 ```
-コマンド`chrome`のソースコードは[こちら](https://gist.github.com/daiz713/8fceee8f00699b70ce21)から入手可能.
+Mac OS以外でChromeを使用している場合は、miilClient/lib/launch_chrome_app.py の20行目の`path_chrome`を適当なものに置き換えてください。
 
 # Chrome Web Store で入手
 https://chrome.google.com/webstore/detail/miilclient/kochkbiapblbmondhfeffokbcjhgmpan
