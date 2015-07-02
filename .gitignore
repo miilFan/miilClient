@@ -1,6 +1,5 @@
-/www/
-!/www/README.md
 original/bower_components/
+www/polymer_components_055/
 releases/
 oauth-keys/key.twitter.js
 
